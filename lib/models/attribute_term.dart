@@ -1,4 +1,5 @@
 import 'package:goshopwooapp/contracts/base_model.dart';
+import 'package:goshopwooapp/exceptions/exceptions.dart';
 //Implementation of the Interface
 class AttributeTerm implements BaseModel{
   // All Properties
@@ -7,12 +8,12 @@ class AttributeTerm implements BaseModel{
   // Named Constructor to receive All Properties from Api
   AttributeTerm.fromJsonMap(Map<String, dynamic> map){
     if(map['id'] == null){
-      throw Exception('Attribute Term ID is not set yet');
+      throw PropertyIsRequired('id');
     }
     this.id               = map['id'];
     this.count            = map['count'];
     if(map['name'] == null){
-      throw Exception('Attribute Term Name for ID= ${this.id} is not set yet');
+      throw PropertyIsRequired('name');
     }
     this.name             = map['name'];
     this.description      = map['description'];

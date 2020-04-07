@@ -1,4 +1,5 @@
 import 'package:goshopwooapp/contracts/base_model.dart';
+import 'package:goshopwooapp/exceptions/exceptions.dart';
 //Implementation of the Interface
 class Category implements BaseModel{
   // All Properties
@@ -8,13 +9,13 @@ class Category implements BaseModel{
   // Named Constructor to receive All Properties from Api
   Category.fromJsonMap(Map<String,dynamic> map){
     if(map['id'] == null){
-      throw Exception('Category ID is not set yet');
+      throw PropertyIsRequired('id');
     }
       this.id            = map['id'];
       this.parent        = map['parent'];
       this.count         = map['count'];
     if(map['name'] == null){
-      throw Exception('Category Name For ID= ${this.id} is not set yet');
+      throw PropertyIsRequired('name');
     }
       this.name          = map['name'];
       this.description   = map['description'];
