@@ -9,13 +9,13 @@ class Category implements BaseModel{
   // Named Constructor to receive All Properties from Api
   Category.fromJsonMap(Map<String,dynamic> map){
     if(map['id'] == null){
-      throw PropertyIsRequired('id');
+      throw PropertyIsRequired('Category' , map['id']);
     }
       this.id            = map['id'];
       this.parent        = map['parent'];
       this.count         = map['count'];
     if(map['name'] == null){
-      throw PropertyIsRequired('name');
+      throw PropertyIsRequired('Category' , map['name']);
     }
       this.name          = map['name'];
       this.description   = map['description'];

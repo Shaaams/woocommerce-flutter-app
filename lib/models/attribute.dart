@@ -9,11 +9,11 @@ class Attribute implements BaseModel{
   // Named Constructor to receive All Properties from Api
   Attribute.fromJsonMap(Map<String, dynamic> map){
     if(map['id'] == null){
-      throw PropertyIsRequired('id');
+      throw PropertyIsRequired('Attribute',map['id']);
     }
       this.id   = map['id'];
     if(map['name'] == null){
-      throw PropertyIsRequired('name');
+      throw PropertyIsRequired( 'Attribute', map['name']);
     }
       this.name = map['name'];
   }

@@ -8,12 +8,12 @@ class AttributeTerm implements BaseModel{
   // Named Constructor to receive All Properties from Api
   AttributeTerm.fromJsonMap(Map<String, dynamic> map){
     if(map['id'] == null){
-      throw PropertyIsRequired('id');
+      throw PropertyIsRequired('AttributeTerm' , map['id']);
     }
     this.id               = map['id'];
     this.count            = map['count'];
     if(map['name'] == null){
-      throw PropertyIsRequired('name');
+      throw PropertyIsRequired('AttributeTerm', map['name']);
     }
     this.name             = map['name'];
     this.description      = map['description'];
