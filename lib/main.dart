@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goshopwooapp/api/products/tag_api.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,7 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text('hi'),
         ),
       ),
+       floatingActionButton: FloatingActionButton(
+         onPressed: _testApi,
+         child: Icon(Icons.add),
+       ),
        // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  _testApi() {
+    TagApi tagApi = TagApi();
+    tagApi.getTag();
   }
 }
