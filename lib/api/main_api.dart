@@ -13,8 +13,8 @@ abstract class MainApi {
 //    'accept': 'application/json',
 //    'authorization': basicAuth,
   };
-
-  static String API_URL = 'https://goshopwooapp.000webhostapp.com/wp-json/wc/v3/';
+  static String MAIN_URL = 'https://goshopwooapp.000webhostapp.com/wp-json/';
+  static String API_URL = MAIN_URL + 'wc/v3/';
   String TAGS_URL       = API_URL + 'products/tags';
   String CATEGORIES_URL = API_URL + 'products/categories';
 
