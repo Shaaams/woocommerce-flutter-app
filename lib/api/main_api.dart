@@ -14,7 +14,7 @@ abstract class MainApi {
 //    'authorization': basicAuth,
   };
 
-  static String API_URL = 'http://goshopwooapp.herokuapp.com/wp-json/wc/v3/';
+  static String API_URL = 'https://goshopwooapp.000webhostapp.com/wp-json/wc/v3/';
   String TAGS_URL       = API_URL + 'products/tags';
   String CATEGORIES_URL = API_URL + 'products/categories';
 
