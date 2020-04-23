@@ -23,4 +23,9 @@ class TagApi extends MainApi implements ApiInterface{
      }
 
   }
+
+  @override
+  Future gitModel(int id) async{
+    throw Exception('Not implemented, as not needed');
+  }
 }
