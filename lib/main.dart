@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
+import 'package:goshopwooapp/controllers/tag_controller.dart';
 import 'package:goshopwooapp/models/tag.dart';
 
 void main() => runApp(MyApp());
@@ -26,6 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TagController tagController = TagController(TagApi());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _testApi() async{
-    TagApi tagApi = TagApi();
-    List<Tag> tags = await tagApi.getTag();
+    List<Tag> tags = await tagController.getAll();
     for(Tag tag in tags){
       print(tag.name);
     }
