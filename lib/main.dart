@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
+import 'package:goshopwooapp/models/tag.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,8 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _testApi() {
+  _testApi() async{
     TagApi tagApi = TagApi();
-    tagApi.getTag();
+    List<Tag> tags = await tagApi.getTag();
+    for(Tag tag in tags){
+      print(tag.name);
+    }
   }
 }
