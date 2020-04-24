@@ -19,7 +19,9 @@ class Category implements BaseModel{
     }
       this.name          = map['name'];
       this.description   = map['description'];
-      this.image         = map['image']['src'];
+      if(map['image'] != null){
+        this.image         = map['image']['src'];
+      }
   }
   // Convert Method From jsonObject To Map
   @override
