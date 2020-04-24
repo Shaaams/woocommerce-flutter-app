@@ -6,10 +6,13 @@ abstract class MainApi {
 
   Map<String, String> headers ={
     'accept'  : 'application/json',
-    'content-type': 'application/json',
+    //'content-type': 'application/json',
     'authorization' : 'Basic ' + base64Encode(utf8.encode('$username:$password')),
   };
   static String MAIN_URL = 'https://goshopwooapp.000webhostapp.com/wp-json/';
+  static String AUTH_URL = MAIN_URL + 'wooapp/v1/auth/';
+  String LOGIN_URL = AUTH_URL + 'login';
+  String REGISTER_URL = AUTH_URL + 'register';
   static String API_URL = MAIN_URL + 'wc/v3/';
   String TAGS_URL       = API_URL + 'products/tags';
   String CATEGORIES_URL = API_URL + 'products/categories';

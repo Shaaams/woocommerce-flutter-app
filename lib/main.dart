@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:goshopwooapp/api/auth/auth_api.dart';
 import 'package:goshopwooapp/api/products/categories_api.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
+import 'package:goshopwooapp/controllers/auth_controller.dart';
 import 'package:goshopwooapp/controllers/category_controller.dart';
 import 'package:goshopwooapp/controllers/tag_controller.dart';
 import 'package:goshopwooapp/models/category.dart';
@@ -33,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TagController tagController = TagController(TagApi());
   CategoryController categoryController = CategoryController(CategoryApi());
+  AuthController authController = AuthController(AuthApi());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
 //    for(Tag tag in tags){
 //      print(tag.name);
 //  }
-      List<Category> categories = await categoryController.getAll();
-      for(Category category in categories){
-        print(category.name);
-      }
+//      List<Category> categories = await categoryController.getAll();
+//      for(Category category in categories){
+//        print(category.name);
+//      }
+
+    int id = await authController.login({
+      'email'    : 'maged@example.com',
+      'password' : 'password1234'
+    });
+
+    print(id);
 
   }
 }
