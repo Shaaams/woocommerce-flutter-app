@@ -8,7 +8,10 @@ import 'package:goshopwooapp/controllers/tag_controller.dart';
 import 'package:goshopwooapp/models/category.dart';
 import 'package:goshopwooapp/models/tag.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  //WidgetsFlutterBinding.ensureInitialized();
+  return runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -67,8 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //      }
 
     int id = await authController.login({
-      'email'    : 'maged@example.com',
-      'password' : 'password1234'
+      'email'    : 'test45@example.com',
+      'password' : 'password'
     });
 
     print(id);
