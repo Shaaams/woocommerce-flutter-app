@@ -12,7 +12,7 @@ class AuthApi extends MainApi implements AuthInterface{
         throw Exception( 'Wrong credentials' );
         break;
       case 500 :
-        throw Exception('an error accured');
+        throw Exception('an error occurred');
         break;
       case 404:
         throw Exception('Resource not found');
@@ -26,7 +26,8 @@ class AuthApi extends MainApi implements AuthInterface{
 
   @override
   Future<dynamic> register(Map<String, dynamic > data) async {
-    http.Response response = await http.post(REGISTER_URL , headers: headers, body: data);
+    print(data);
+    http.Response response = await http.post( REGISTER_URL , headers: headers , body: data );
     switch( response.statusCode ){
       case 403:
         throw Exception( 'Wrong credentials' );

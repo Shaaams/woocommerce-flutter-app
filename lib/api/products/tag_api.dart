@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:goshopwooapp/api/api_interface.dart';
 import 'package:goshopwooapp/api/main_api.dart';
+import 'package:goshopwooapp/models/profile.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -25,5 +26,10 @@ class TagApi extends MainApi implements ApiInterface{
   @override
   Future gitModel(int id) async{
     throw Exception('Not implemented, as not needed');
+  }
+
+  @override
+  Future updateProfile(int id, CustomerProfile profile) {
+    throw Exception('not implemented, not needed');
   }
 }

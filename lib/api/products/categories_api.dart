@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:goshopwooapp/api/api_interface.dart';
 import 'package:goshopwooapp/api/main_api.dart';
+import 'package:goshopwooapp/models/profile.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryApi extends MainApi implements ApiInterface{
@@ -23,6 +24,11 @@ class CategoryApi extends MainApi implements ApiInterface{
   @override
   Future<dynamic> gitModel(int id) async{
     throw Exception('not implemented , as not needed');
+  }
+
+  @override
+  Future updateProfile(int id, CustomerProfile profile) {
+    throw Exception('not implemented, not needed');
   }
 
 }

@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/auth/auth_api.dart';
 import 'package:goshopwooapp/api/products/categories_api.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
+import 'package:goshopwooapp/api/profile/profile_api.dart';
 import 'package:goshopwooapp/controllers/auth_controller.dart';
 import 'package:goshopwooapp/controllers/category_controller.dart';
+import 'package:goshopwooapp/controllers/profile_controller.dart';
 import 'package:goshopwooapp/controllers/tag_controller.dart';
+import 'package:goshopwooapp/models/address.dart';
 import 'package:goshopwooapp/models/category.dart';
+import 'package:goshopwooapp/models/customer.dart';
+import 'package:goshopwooapp/models/profile.dart';
 import 'package:goshopwooapp/models/tag.dart';
 
 void main() {
@@ -39,6 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
   TagController tagController = TagController(TagApi());
   CategoryController categoryController = CategoryController(CategoryApi());
   AuthController authController = AuthController(AuthApi());
+  ProfileController profileController = ProfileController(ProfileApi());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,30 +58,75 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text('hi'),
         ),
       ),
-       floatingActionButton: FloatingActionButton(
-         onPressed: _testApi,
-         child: Icon(Icons.add),
-       ),
-       // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: FloatingActionButton(
+        onPressed: _testApi,
+        child: Icon(Icons.add),
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  _testApi() async{
-//    List<Tag> tags = await tagController.getAll();
-//    for(Tag tag in tags){
-//      print(tag.name);
-//  }
-//      List<Category> categories = await categoryController.getAll();
-//      for(Category category in categories){
-//        print(category.name);
-//      }
+    _testApi() async {
+  //    List<Tag> tags = await tagController.getAll();
+  //    for(Tag tag in tags){
+  //      print(tag.name);
+  //  }
+  //      List<Category> categories = await categoryController.getAll();
+  //      for(Category category in categories){
+  //        print(category.name);
+  //      }
 
-    int id = await authController.login({
-      'email'    : 'test45@example.com',
-      'password' : 'password'
-    });
+  //    int id = await authController.register({
+  //      'first_name': 'Shamss',
+  //      'last_name': 'tmtam',
+  //      'email': 'test145@example.com',
+  //      'password': 'password'
+  //    });
+  //
+  //    print(id);
+  //  }
 
-    print(id);
+          CustomerProfile customerProfile = CustomerProfile(
+        shipping: Address(
+            email: 'shamss@shipping.com',
+            first_name: 'shipping new first name',
+            last_name: 'shipping new last name',
+            state: 'Hawally',
+
+        ),
+        billing: Address(
+          email: 'shamss@billing.com',
+          first_name: 'billing new first name',
+          last_name: 'billing new last name',
+        ),
+
+      );
+      Customer customer = await profileController.updateProfile(1, customerProfile);
+
+      print(customer.billing.email);
+
+    }
+
 
   }
-}
+
+//  CustomerProfile customerProfile = CustomerProfile(
+//    first_name: 'the new first name',
+//    shipping: Address(
+//        type: 'shipping',
+//        first_name: 'shipping new first name',
+//        last_name: 'shipping new last name',
+//        state: 'Hawally',
+//    ),
+//
+//  );
+//  Customer customer = await profileController.updateProfile(1, customerProfile);
+//
+//  print(customer.first_name);
+//  print(customer.shipping.first_name);
+//  print(customer.shipping.last_name);
+//
+//  }
+
+// ck_b9f4844be409cbf0f8a0fd7b72a7bc029924ed26
+// cs_505a7d8047b5c44aeed6222f84f05296bdb817a6

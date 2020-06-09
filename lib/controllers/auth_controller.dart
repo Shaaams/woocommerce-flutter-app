@@ -9,14 +9,14 @@ class AuthController implements AuthBaseController{
   AuthController(this.authApi);
 
   @override
-  Future<dynamic> login(Map<String, dynamic > data) async {
+  Future<int> login(Map<String, dynamic > data) async {
     var response = await authApi.login(data);
     await this.saveID(response['user_id']);
     return response['user_id'];
   }
 
   @override
-  Future<dynamic> register(Map<String, dynamic > data) async {
+  Future<int> register(Map<String, dynamic > data) async {
     var response = await authApi.register(data);
     await this.saveID(response['user_id']);
     return response['user_id'];

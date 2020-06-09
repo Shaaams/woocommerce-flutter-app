@@ -5,5 +5,5 @@ class AuthBaseController {
 
   Future<dynamic> saveID(int id) async {}
 
-  Future<int> getID() async{}
+  Future<dynamic> getID() async{}
 }

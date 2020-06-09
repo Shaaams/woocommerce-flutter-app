@@ -19,8 +19,8 @@ class Customer implements BaseModel{
     this.first_name = map['fist_name'];
     this.last_name  = map['last_name'];
     this.avatar_url = map['avatar_url'];
-    this.shipping   = Address.fromJsonMap(map['shipping'], 'shipping');
-    this.billing    = Address.fromJsonMap(map['billing'], 'billing');
+    this.shipping   = Address.fromJsonMap(map['shipping']);
+    this.billing    = Address.fromJsonMap(map['billing']);
   }
   // Convert Method From jsonObject To Map
   @override
