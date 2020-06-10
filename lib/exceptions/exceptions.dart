@@ -3,6 +3,12 @@ class PropertyIsRequired implements Exception{
 String property;
 
 
+ /*
+ * Custom Exception
+ * parame {String} nameClass
+ * parame {String} property
+ */
+
  PropertyIsRequired(this.nameClass, this.property);
 
  @override

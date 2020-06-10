@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class CategoryApi extends MainApi implements ApiInterface{
   @override
-  Future<List<dynamic>> getAll() async{
+  Future<List<dynamic>> getAll({int page}) async{
     http.Response response = await http.get(CATEGORIES_URL, headers: headers);
     switch (response.statusCode){
       case 401:
@@ -28,6 +28,11 @@ class CategoryApi extends MainApi implements ApiInterface{
 
   @override
   Future updateProfile(int id, CustomerProfile profile) {
+    throw Exception('not implemented, not needed');
+  }
+
+  @override
+  Future getVariations(int product) {
     throw Exception('not implemented, not needed');
   }
 

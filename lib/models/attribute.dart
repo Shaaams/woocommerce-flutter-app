@@ -5,6 +5,7 @@ class Attribute implements BaseModel{
   // All Properties
   int id;
   String name;
+  String option;
 
   // Named Constructor to receive All Properties from Api
   Attribute.fromJsonMap(Map<String, dynamic> map){
@@ -16,14 +17,20 @@ class Attribute implements BaseModel{
       throw PropertyIsRequired( 'Attribute', map['name']);
     }
       this.name = map['name'];
+
+    if(map['option'] == null){
+      throw PropertyIsRequired( 'Attribute', map['option']);
+    }
+    this.option = map['option'];
   }
 
   // Convert Method From jsonObject To Map
   @override
   Map<String,dynamic > toMap() {
     return {
-      'id'   : this.id,
-      'name' : this.name,
+      'id'     : this.id,
+      'name'   : this.name,
+      'option' : this.option,
 
     };
   }

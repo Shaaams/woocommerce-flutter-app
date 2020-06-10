@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/auth/auth_api.dart';
 import 'package:goshopwooapp/api/products/categories_api.dart';
+import 'package:goshopwooapp/api/products/products_api.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
 import 'package:goshopwooapp/api/profile/profile_api.dart';
 import 'package:goshopwooapp/controllers/auth_controller.dart';
 import 'package:goshopwooapp/controllers/category_controller.dart';
+import 'package:goshopwooapp/controllers/product_controller.dart';
 import 'package:goshopwooapp/controllers/profile_controller.dart';
 import 'package:goshopwooapp/controllers/tag_controller.dart';
 import 'package:goshopwooapp/models/address.dart';
+import 'package:goshopwooapp/models/attribute.dart';
+import 'package:goshopwooapp/models/base_product.dart';
 import 'package:goshopwooapp/models/category.dart';
 import 'package:goshopwooapp/models/customer.dart';
+import 'package:goshopwooapp/models/product.dart';
 import 'package:goshopwooapp/models/profile.dart';
 import 'package:goshopwooapp/models/tag.dart';
+import 'package:goshopwooapp/models/variable_product.dart';
+import 'package:goshopwooapp/models/variation.dart';
 
 void main() {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   CategoryController categoryController = CategoryController(CategoryApi());
   AuthController authController = AuthController(AuthApi());
   ProfileController profileController = ProfileController(ProfileApi());
+  ProductController productController = ProductController(ProductApi());
 
   @override
   Widget build(BuildContext context) {
@@ -86,24 +94,46 @@ class _MyHomePageState extends State<MyHomePage> {
   //    print(id);
   //  }
 
-          CustomerProfile customerProfile = CustomerProfile(
-        shipping: Address(
-            email: 'shamss@shipping.com',
-            first_name: 'shipping new first name',
-            last_name: 'shipping new last name',
-            state: 'Hawally',
+//          CustomerProfile customerProfile = CustomerProfile(
+//        shipping: Address(
+//            email: 'shamss@shipping.com',
+//            first_name: 'shipping new first name',
+//            last_name: 'shipping new last name',
+//            state: 'Hawally',
+//
+//        ),
+//        billing: Address(
+//          email: 'shamss@billing.com',
+//          first_name: 'billing new first name',
+//          last_name: 'billing new last name',
+//        ),
+//
+//      );
+//      Customer customer = await profileController.updateProfile(1, customerProfile);
+//
+//      print(customer.billing.email);
 
-        ),
-        billing: Address(
-          email: 'shamss@billing.com',
-          first_name: 'billing new first name',
-          last_name: 'billing new last name',
-        ),
+        List<BaseProduct> products = await productController.getAll();
+        print(products.length);
+        for(var product in products){
+        if(product.type == 'variable'){
+          List<Variation> variations = await productController.getVariations(
+              product: product.id);
+          for (Variation variation in variations){
+            print(product.name);
+            print(variation.regular_price);
+            for(Attribute attribute in variation.attributes){
+                  print(attribute.option);
+            }
+          }
+          }else if(product.type == 'simple'){
+            print(product.description);
+          }else{
+            print('Not Compered');
+          }
+        }
 
-      );
-      Customer customer = await profileController.updateProfile(1, customerProfile);
 
-      print(customer.billing.email);
 
     }
 

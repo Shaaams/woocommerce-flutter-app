@@ -1,5 +1,5 @@
 import 'package:goshopwooapp/api/api_interface.dart';
-import 'package:goshopwooapp/controllers/controller.dart';
+import 'package:goshopwooapp/contracts/controller.dart';
 import 'package:goshopwooapp/models/customer.dart';
 import 'package:goshopwooapp/models/profile.dart';
 

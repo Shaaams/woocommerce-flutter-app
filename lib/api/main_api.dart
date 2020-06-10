@@ -22,6 +22,7 @@ abstract class MainApi {
   String REGISTER_URL = AUTH_URL + 'register';
   String TAGS_URL       = API_URL + 'products/tags';
   String CATEGORIES_URL = API_URL + 'products/categories';
-  String Profile_URL = API_URL + 'customers/';
+  String PROFILE_URL = API_URL + 'customers/';
+  String PRODUCTS_URL = API_URL + 'products';
 
 }

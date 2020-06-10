@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class TagApi extends MainApi implements ApiInterface{
-   Future<List<dynamic>> getAll() async{
+   Future<List<dynamic>> getAll({int page}) async{
 
      http.Response response =await http.get(TAGS_URL, headers: headers);
      switch (response.statusCode){
@@ -30,6 +30,11 @@ class TagApi extends MainApi implements ApiInterface{
 
   @override
   Future updateProfile(int id, CustomerProfile profile) {
+    throw Exception('not implemented, not needed');
+  }
+
+  @override
+  Future getVariations(int product) {
     throw Exception('not implemented, not needed');
   }
 }

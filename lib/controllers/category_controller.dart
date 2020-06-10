@@ -1,6 +1,5 @@
 import 'package:goshopwooapp/api/api_interface.dart';
-import 'package:goshopwooapp/api/products/categories_api.dart';
-import 'package:goshopwooapp/controllers/controller.dart';
+import 'package:goshopwooapp/contracts/controller.dart';
 import 'package:goshopwooapp/models/category.dart';
 
 class CategoryController implements Controller{

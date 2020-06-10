@@ -8,13 +8,13 @@ import 'package:http/http.dart' as http;
 class ProfileApi extends MainApi implements ApiInterface{
 
   @override
-  Future<List> getAll() {
+  Future<List> getAll({int page}) {
     throw Exception('not implemented, not needed');
   }
 
   @override
   Future<dynamic> gitModel(int id) async{
-    http.Response response = await http.get(Profile_URL + id.toString(), headers: headers);
+    http.Response response = await http.get(PROFILE_URL + id.toString(), headers: headers);
     switch(response.statusCode){
       case 403:
         throw Exception( 'Wrong credentials' );
@@ -34,7 +34,7 @@ class ProfileApi extends MainApi implements ApiInterface{
   @override
   Future<dynamic> updateProfile(int id, CustomerProfile profile) async{
     print(profile.toMap());
-    http.Response response = await http.put(Profile_URL + id.toString() , headers: headers, body: jsonEncode(profile.toMap()));
+    http.Response response = await http.put(PROFILE_URL + id.toString() , headers: headers, body: jsonEncode(profile.toMap()));
     switch(response.statusCode){
       case 403:
         throw Exception( 'Wrong credentials' );
@@ -52,6 +52,11 @@ class ProfileApi extends MainApi implements ApiInterface{
         return false;
         break;
     }
+  }
+
+  @override
+  Future getVariations(int product) {
+    throw Exception('not implemented, not needed');
   }
 
 }
