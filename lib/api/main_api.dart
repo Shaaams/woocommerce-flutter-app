@@ -24,5 +24,6 @@ abstract class MainApi {
   String CATEGORIES_URL = API_URL + 'products/categories';
   String PROFILE_URL = API_URL + 'customers/';
   String PRODUCTS_URL = API_URL + 'products';
+  String ORDERS_URL = API_URL + 'orders';
 
 }

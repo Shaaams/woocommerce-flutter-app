@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/auth/auth_api.dart';
+import 'package:goshopwooapp/api/orders/orders_api.dart';
 import 'package:goshopwooapp/api/products/categories_api.dart';
 import 'package:goshopwooapp/api/products/products_api.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
 import 'package:goshopwooapp/api/profile/profile_api.dart';
 import 'package:goshopwooapp/controllers/auth_controller.dart';
 import 'package:goshopwooapp/controllers/category_controller.dart';
+import 'package:goshopwooapp/controllers/order_controller.dart';
 import 'package:goshopwooapp/controllers/product_controller.dart';
 import 'package:goshopwooapp/controllers/profile_controller.dart';
 import 'package:goshopwooapp/controllers/tag_controller.dart';
@@ -14,6 +16,7 @@ import 'package:goshopwooapp/models/attribute.dart';
 import 'package:goshopwooapp/models/base_product.dart';
 import 'package:goshopwooapp/models/category.dart';
 import 'package:goshopwooapp/models/customer.dart';
+import 'package:goshopwooapp/models/order.dart';
 import 'package:goshopwooapp/models/product.dart';
 import 'package:goshopwooapp/models/profile.dart';
 import 'package:goshopwooapp/models/tag.dart';
@@ -53,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   AuthController authController = AuthController(AuthApi());
   ProfileController profileController = ProfileController(ProfileApi());
   ProductController productController = ProductController(ProductApi());
+  OrderController orderController = OrderController(OrderApi());
 
   @override
   Widget build(BuildContext context) {
@@ -74,72 +78,78 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    _testApi() async {
-  //    List<Tag> tags = await tagController.getAll();
-  //    for(Tag tag in tags){
-  //      print(tag.name);
-  //  }
-  //      List<Category> categories = await categoryController.getAll();
-  //      for(Category category in categories){
-  //        print(category.name);
-  //      }
+      _testApi() async {
+    //    List<Tag> tags = await tagController.getAll();
+    //    for(Tag tag in tags){
+    //      print(tag.name);
+    //  }
+    //      List<Category> categories = await categoryController.getAll();
+    //      for(Category category in categories){
+    //        print(category.name);
+    //      }
 
-  //    int id = await authController.register({
-  //      'first_name': 'Shamss',
-  //      'last_name': 'tmtam',
-  //      'email': 'test145@example.com',
-  //      'password': 'password'
-  //    });
+    //    int id = await authController.register({
+    //      'first_name': 'Shamss',
+    //      'last_name': 'tmtam',
+    //      'email': 'test145@example.com',
+    //      'password': 'password'
+    //    });
+    //
+    //    print(id);
+    //  }
+
+  //          CustomerProfile customerProfile = CustomerProfile(
+  //        shipping: Address(
+  //            email: 'shamss@shipping.com',
+  //            first_name: 'shipping new first name',
+  //            last_name: 'shipping new last name',
+  //            state: 'Hawally',
   //
-  //    print(id);
-  //  }
+  //        ),
+  //        billing: Address(
+  //          email: 'shamss@billing.com',
+  //          first_name: 'billing new first name',
+  //          last_name: 'billing new last name',
+  //        ),
+  //
+  //      );
+  //      Customer customer = await profileController.updateProfile(1, customerProfile);
+  //
+  //      print(customer.billing.email);
 
-//          CustomerProfile customerProfile = CustomerProfile(
-//        shipping: Address(
-//            email: 'shamss@shipping.com',
-//            first_name: 'shipping new first name',
-//            last_name: 'shipping new last name',
-//            state: 'Hawally',
-//
-//        ),
-//        billing: Address(
-//          email: 'shamss@billing.com',
-//          first_name: 'billing new first name',
-//          last_name: 'billing new last name',
-//        ),
-//
-//      );
-//      Customer customer = await profileController.updateProfile(1, customerProfile);
-//
-//      print(customer.billing.email);
+  //        List<BaseProduct> products = await productController.getAll();
+  //        print(products.length);
+  //        for(var product in products){
+  //        if(product.type == 'variable') {
+  //          List<Variation> variations = await productController.getVariations(
+  //              product: product.id);
+  //          for (Variation variation in variations) {
+  //            print(product.name);
+  //            print(variation.regular_price);
+  //            for (Attribute attribute in variation.attributes) {
+  //              print(attribute.option);
+  //            }
+  //          }
+  //        }
+  //          }else if(product.type == 'simple'){
+  //            print(product.description);
+  //          }else{
+  //            print('Not Compered');
+  //          }
+   //       }
 
-//        List<BaseProduct> products = await productController.getAll();
-//        print(products.length);
-//        for(var product in products){
-//        if(product.type == 'variable') {
-//          List<Variation> variations = await productController.getVariations(
-//              product: product.id);
-//          for (Variation variation in variations) {
-//            print(product.name);
-//            print(variation.regular_price);
-//            for (Attribute attribute in variation.attributes) {
-//              print(attribute.option);
-//            }
-//          }
-//        }
-//          }else if(product.type == 'simple'){
-//            print(product.description);
-//          }else{
-//            print('Not Compered');
-//          }
- //       }
+  //      Product product = await this.productController.getProduct(42);
+  //      print(product.name);
 
-      Product product = await this.productController.getProduct(42);
-      print(product.name);
+          List<Order> orders =await this.orderController.getAll();
+          for(Order order in orders){
+            print(order.billing.email);
+          }
 
+//            Order order = await this.orderController.getOrder(53);
+//            print(order.total);
 
-
-    }
+      }
 
 
   }
