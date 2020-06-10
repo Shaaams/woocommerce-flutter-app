@@ -11,6 +11,22 @@ class ProductApi extends MainApi implements ApiInterface{
     PRODUCTS_URL = page != null ? PRODUCTS_URL + '?page=${page.toString()}' : PRODUCTS_URL;
     http.Response response = await http.get(PRODUCTS_URL, headers: headers);
     switch( response.statusCode ){
+        case 401:
+          throw Exception('Basic Auth has failed');
+          break;
+        case 200:
+          return jsonDecode(response.body);
+          break;
+        default:
+          throw Exception('No data received');
+          break;
+    }
+  }
+
+  @override
+  Future<dynamic> gitModel(int id) async {
+    http.Response response = await http.get(PRODUCTS_URL + '/${id.toString()}', headers: headers);
+    switch( response.statusCode ){
       case 401:
         throw Exception('Basic Auth has failed');
         break;
@@ -20,18 +36,7 @@ class ProductApi extends MainApi implements ApiInterface{
       default:
         throw Exception('No data received');
         break;
-  }
-  }
-
-  @override
-  Future gitModel(int id) {
-    throw Exception('not implemented, not needed');
-  }
-
-  @override
-  Future updateProfile(int id, CustomerProfile profile) {
-
-    throw Exception('not implemented, not needed');
+    }
   }
 
   @override
@@ -45,6 +50,12 @@ class ProductApi extends MainApi implements ApiInterface{
           throw Exception('no data recieved');
           break;
       }
+  }
+
+  @override
+  Future updateProfile(int id, CustomerProfile profile) {
+
+    throw Exception('not implemented, not needed');
   }
 
 }

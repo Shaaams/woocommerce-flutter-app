@@ -23,6 +23,10 @@ class ProductController implements Controller {
     return products;
   }
 
+  Future<BaseProduct> getProduct( int product) async {
+    var data = await this.productApi.gitModel(product);
+      return Product.fromJsonMap(data);
+  }
 
   Future<List<Variation>> getVariations( { int product} ) async{
     var data = await this.productApi.getVariations( product );

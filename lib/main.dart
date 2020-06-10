@@ -113,25 +113,29 @@ class _MyHomePageState extends State<MyHomePage> {
 //
 //      print(customer.billing.email);
 
-        List<BaseProduct> products = await productController.getAll();
-        print(products.length);
-        for(var product in products){
-        if(product.type == 'variable'){
-          List<Variation> variations = await productController.getVariations(
-              product: product.id);
-          for (Variation variation in variations){
-            print(product.name);
-            print(variation.regular_price);
-            for(Attribute attribute in variation.attributes){
-                  print(attribute.option);
-            }
-          }
-          }else if(product.type == 'simple'){
-            print(product.description);
-          }else{
-            print('Not Compered');
-          }
-        }
+//        List<BaseProduct> products = await productController.getAll();
+//        print(products.length);
+//        for(var product in products){
+//        if(product.type == 'variable') {
+//          List<Variation> variations = await productController.getVariations(
+//              product: product.id);
+//          for (Variation variation in variations) {
+//            print(product.name);
+//            print(variation.regular_price);
+//            for (Attribute attribute in variation.attributes) {
+//              print(attribute.option);
+//            }
+//          }
+//        }
+//          }else if(product.type == 'simple'){
+//            print(product.description);
+//          }else{
+//            print('Not Compered');
+//          }
+ //       }
+
+      Product product = await this.productController.getProduct(42);
+      print(product.name);
 
 
 
