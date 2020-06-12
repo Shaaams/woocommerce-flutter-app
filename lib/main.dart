@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/api/auth/auth_api.dart';
 import 'package:goshopwooapp/api/orders/orders_api.dart';
+import 'package:goshopwooapp/api/payment/cash_on_delivery.dart';
+import 'package:goshopwooapp/api/payment/checkout_payment.dart';
+import 'package:goshopwooapp/api/payment/payment_controller.dart';
 import 'package:goshopwooapp/api/products/categories_api.dart';
 import 'package:goshopwooapp/api/products/products_api.dart';
 import 'package:goshopwooapp/api/products/tag_api.dart';
@@ -14,9 +17,11 @@ import 'package:goshopwooapp/controllers/tag_controller.dart';
 import 'package:goshopwooapp/models/address.dart';
 import 'package:goshopwooapp/models/attribute.dart';
 import 'package:goshopwooapp/models/base_product.dart';
+import 'package:goshopwooapp/models/card_info.dart';
 import 'package:goshopwooapp/models/category.dart';
 import 'package:goshopwooapp/models/customer.dart';
 import 'package:goshopwooapp/models/order.dart';
+import 'package:goshopwooapp/models/payment_response.dart';
 import 'package:goshopwooapp/models/product.dart';
 import 'package:goshopwooapp/models/profile.dart';
 import 'package:goshopwooapp/models/tag.dart';
@@ -57,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ProfileController profileController = ProfileController(ProfileApi());
   ProductController productController = ProductController(ProductApi());
   OrderController orderController = OrderController(OrderApi());
+  PaymentController paymentController = PaymentController(CashOnDelivery());
 
   @override
   Widget build(BuildContext context) {
@@ -79,77 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
       _testApi() async {
-    //    List<Tag> tags = await tagController.getAll();
-    //    for(Tag tag in tags){
-    //      print(tag.name);
-    //  }
-    //      List<Category> categories = await categoryController.getAll();
-    //      for(Category category in categories){
-    //        print(category.name);
-    //      }
-
-    //    int id = await authController.register({
-    //      'first_name': 'Shamss',
-    //      'last_name': 'tmtam',
-    //      'email': 'test145@example.com',
-    //      'password': 'password'
-    //    });
-    //
-    //    print(id);
-    //  }
-
-  //          CustomerProfile customerProfile = CustomerProfile(
-  //        shipping: Address(
-  //            email: 'shamss@shipping.com',
-  //            first_name: 'shipping new first name',
-  //            last_name: 'shipping new last name',
-  //            state: 'Hawally',
-  //
-  //        ),
-  //        billing: Address(
-  //          email: 'shamss@billing.com',
-  //          first_name: 'billing new first name',
-  //          last_name: 'billing new last name',
-  //        ),
-  //
-  //      );
-  //      Customer customer = await profileController.updateProfile(1, customerProfile);
-  //
-  //      print(customer.billing.email);
-
-  //        List<BaseProduct> products = await productController.getAll();
-  //        print(products.length);
-  //        for(var product in products){
-  //        if(product.type == 'variable') {
-  //          List<Variation> variations = await productController.getVariations(
-  //              product: product.id);
-  //          for (Variation variation in variations) {
-  //            print(product.name);
-  //            print(variation.regular_price);
-  //            for (Attribute attribute in variation.attributes) {
-  //              print(attribute.option);
-  //            }
-  //          }
-  //        }
-  //          }else if(product.type == 'simple'){
-  //            print(product.description);
-  //          }else{
-  //            print('Not Compered');
-  //          }
-   //       }
-
-  //      Product product = await this.productController.getProduct(42);
-  //      print(product.name);
-
-          List<Order> orders =await this.orderController.getAll();
-          for(Order order in orders){
-            print(order.billing.email);
-          }
-
-//            Order order = await this.orderController.getOrder(53);
-//            print(order.total);
-
-      }
+      print('Started');
+      PaymentResponse response = await paymentController.payForOrder(amount: 5000, card: CardInfo(
+         number: "4543474002249996",
+         month: "12",
+         year: "23"
+       ));
+//      PaymentResponse response = await paymentController.payForOrder(amount: 5000);
+        print(response.status);
+     }
 
 
   }
