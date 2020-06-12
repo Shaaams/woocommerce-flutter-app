@@ -38,6 +38,11 @@ class CheckoutPayment implements Payable{
         var body = jsonDecode(response.body);
         return body['token'];
         break;
+      case 401:
+        throw Exception('Unauthorized');
+        break;
+      case 422:
+        throw Exception('Invalid data was sent');
       default:
         throw Exception('Error');
         break;
@@ -62,6 +67,21 @@ class CheckoutPayment implements Payable{
       case 201:
         var body = jsonDecode(response.body);
         return PaymentResponse( body['id'] , body['response_summary']);
+        break;
+      case 401:
+        throw Exception('Unauthorized');
+        break;
+      case 403:
+        throw Exception('Capture not allowed');
+        break;
+      case 404:
+        throw Exception('Payment not found');
+        break;
+      case 422:
+        throw Exception('Invalid data was sent');
+        break;
+      case 502:
+        throw Exception('Bad gateway');
         break;
       default:
         throw Exception('Payment failed');
