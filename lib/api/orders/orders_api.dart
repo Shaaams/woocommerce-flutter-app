@@ -14,15 +14,15 @@ class OrderApi extends MainApi implements ApiInterface{
 
   Future<bool> createOrder(List<OrderItem> items, {Address billing, Address shipping}) async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String customer_id = sharedPreferences.getString("user_id");
+    int customer_id = sharedPreferences.getInt("user_id");
     ProfileController profileController = ProfileController(ProfileApi());
-    Customer customer = await profileController.getCustomer(1);
+    Customer customer = await profileController.getCustomer(customer_id);
     List<Map<String,int>> itemsMap = [];
     for( OrderItem item in items ){
       itemsMap.add(item.toMap());
     }
     Map<String,dynamic> body = {
-      'customer_id' : 1,
+      'customer_id' : customer,
       'line_items' : itemsMap,
       'set_paid' : true
     };
