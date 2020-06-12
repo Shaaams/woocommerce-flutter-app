@@ -21,6 +21,7 @@ import 'package:goshopwooapp/models/card_info.dart';
 import 'package:goshopwooapp/models/category.dart';
 import 'package:goshopwooapp/models/customer.dart';
 import 'package:goshopwooapp/models/order.dart';
+import 'package:goshopwooapp/models/order_item.dart';
 import 'package:goshopwooapp/models/payment_response.dart';
 import 'package:goshopwooapp/models/product.dart';
 import 'package:goshopwooapp/models/profile.dart';
@@ -84,37 +85,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-      _testApi() async {
-      print('Started');
-      PaymentResponse response = await paymentController.payForOrder(amount: 5000, card: CardInfo(
-         number: "4543474002249996",
-         month: "12",
-         year: "23"
-       ));
-//      PaymentResponse response = await paymentController.payForOrder(amount: 5000);
-        print(response.status);
-     }
+  _testApi() async {
+  List<OrderItem> items = [
+    OrderItem(product_id: 38, quantity: 2, variation_id: null),
+    OrderItem(product_id: 37, quantity: 2, variation_id: null),
+    OrderItem(product_id: 48, quantity: 2, variation_id: 47),
 
+  ];
+  //print(items);
+  print(await orderController.createOrder(items));
 
   }
 
-//  CustomerProfile customerProfile = CustomerProfile(
-//    first_name: 'the new first name',
-//    shipping: Address(
-//        type: 'shipping',
-//        first_name: 'shipping new first name',
-//        last_name: 'shipping new last name',
-//        state: 'Hawally',
-//    ),
-//
-//  );
-//  Customer customer = await profileController.updateProfile(1, customerProfile);
-//
-//  print(customer.first_name);
-//  print(customer.shipping.first_name);
-//  print(customer.shipping.last_name);
-//
-//  }
 
-// ck_b9f4844be409cbf0f8a0fd7b72a7bc029924ed26
-// cs_505a7d8047b5c44aeed6222f84f05296bdb817a6
+}

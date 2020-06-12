@@ -1,9 +1,11 @@
-import 'package:goshopwooapp/api/api_interface.dart';
+import 'package:goshopwooapp/api/orders/orders_api.dart';
 import 'package:goshopwooapp/contracts/controller.dart';
+import 'package:goshopwooapp/models/address.dart';
 import 'package:goshopwooapp/models/order.dart';
+import 'package:goshopwooapp/models/order_item.dart';
 
 class OrderController implements Controller{
-  ApiInterface orderApi;
+  OrderApi orderApi;
 
   OrderController(this.orderApi);
 
@@ -22,4 +24,10 @@ class OrderController implements Controller{
     return Order.fromJson(data);
   }
 
+  Future<bool> createOrder(List<OrderItem> items, {Address billing, Address shipping})async{
+    return await this.orderApi.createOrder( items , billing: billing , shipping: shipping );
+  }
+
 }
+
+// var data = await this.orderApi.createOrder()
