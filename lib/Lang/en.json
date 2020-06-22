@@ -1,6 +1,17 @@
 {
-  "KEY_TITLE_PAGE" : "Second Screen",
+  "KEY_TITLE_PAGE"   : "Second Screen",
   "KEY_TITLE_BUTTON" : "Language",
-  "KEY_TEX_BUTTON" : "Choose the language of the app",
-  "KEY_CHANGE_LANG" : "Change Lang"
+  "KEY_TEX_BUTTON"   : "Choose the language of the app",
+  "KEY_CHANGE_LANG"  : "Change Lang",
+  "NEXT_BUTTON"      : "Next",
+  "START_BUTTON"     : "Start",
+  "SKIP_BUTTON"      : " Skip",
+  "TITLE_ONE"        : "Title 1",
+  "TITLE_TWO"        : "Title 2",
+  "TITLE_THREE"      : "Title 3",
+  "DESCRIPTION_ONE"  : "The first mate and his Skipper too will do their very comfortable in their tropic island nest to till the end.",
+  "DESCRIPTION_TWO"  : "The first mate and his Skipper too will do their very comfortable in their tropic island nest to till the end.",
+  "DESCRIPTION_THREE": "The first mate and his Skipper too will do their very comfortable in their tropic island nest to till the end.",
+  "REGISTER_OPTION"  : "Register",
+  "LOGIN_OPTION"     : "Login"
 }

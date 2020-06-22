@@ -6,7 +6,7 @@ import 'dart:convert';
 class AuthApi extends MainApi implements AuthInterface{
   @override
   Future<dynamic> login(Map<String, dynamic > data) async {
-    http.Response response = await http.post( LOGIN_URL , headers: headers , body: data );
+    http.Response response = await http.post( LOGIN_URL , headers: headers , body: jsonEncode(data) );
     switch( response.statusCode ){
       case 403:
         throw Exception( 'Wrong credentials' );
@@ -27,7 +27,7 @@ class AuthApi extends MainApi implements AuthInterface{
   @override
   Future<dynamic> register(Map<String, dynamic > data) async {
     print(data);
-    http.Response response = await http.post( REGISTER_URL , headers: headers , body: data );
+    http.Response response = await http.post( REGISTER_URL , headers: headers , body: jsonEncode(data) );
     switch( response.statusCode ){
       case 403:
         throw Exception( 'Wrong credentials' );

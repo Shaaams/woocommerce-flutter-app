@@ -17,7 +17,7 @@ abstract class MainApi {
   static String   SHAMSS_URL = 'https://goshopwooapp.000webhostapp.com/wp-json/';
   static String MAIN_URL = 'https://woocommerce-169250-1222153.cloudwaysapps.com/wp-json/';
   static String API_URL = MAIN_URL + 'wc/v3/';
-  static String AUTH_URL = SHAMSS_URL + 'wooapp/v1/auth/';
+  static String AUTH_URL = MAIN_URL + 'wooapp/v1/auth/';
   String LOGIN_URL = AUTH_URL + 'login';
   String REGISTER_URL = AUTH_URL + 'register';
   String TAGS_URL       = API_URL + 'products/tags';

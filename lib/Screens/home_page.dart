@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/Localization/Functionality/get_translated.dart';
 import 'package:goshopwooapp/Routers/custom_route.dart';
@@ -44,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     if(_locale == null){
       return Material(
+
         child: Container(
           child: Center(
             child: CircularProgressIndicator(),
@@ -52,15 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }else{
       return MaterialApp(
+       // builder: DevicePreview.appBuilder,
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.blue,
         ),
         locale: _locale,
         supportedLocales: [
           Locale('en', 'US'),
           Locale('ar', 'EG'),
+
         ],
         localizationsDelegates: [
           CustomLocalization.delegate,
@@ -68,14 +72,46 @@ class _MyHomePageState extends State<MyHomePage> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        localeResolutionCallback: (deviceLocale, supportedLocales){
-          for(var locale in supportedLocales){
-            if(locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode){
-              return deviceLocale;
+        localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
+          if (locale == null) {
+          //  debugPrint("*language locale is null!!!");
+            return supportedLocales.first;
+          }
+
+          for (Locale supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode ||
+                supportedLocale.countryCode == locale.countryCode) {
+              //debugPrint("*language ok $supportedLocale");
+              return supportedLocale;
             }
           }
+
+         // debugPrint("*language to fallback ${supportedLocales.first}");
           return supportedLocales.first;
         },
+
+
+
+//            (deviceLocale, supportedLocales){
+//          if (locale == null) {
+//            debugPrint("*language locale is null!!!");
+//            return supportedLocales.first;
+//          }
+//          for(var locale in supportedLocales){
+//            if(locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode){
+//
+//              return deviceLocale;
+////              if(deviceLocale.languageCode == "ar"){
+////                return supportedLocales.last;
+////              }else{
+////                return supportedLocales.first;
+////              }
+//
+//
+//            }
+//          }
+//          return supportedLocales.first;
+     //   },
         onGenerateRoute: CustomRoute.allRoutes,
         initialRoute: widget.homeScreenRoute,
       );

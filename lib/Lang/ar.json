@@ -1,6 +1,17 @@
 {
-  "KEY_TITLE_PAGE" : "الصفحة الثانية",
+  "KEY_TITLE_PAGE"   : "الصفحة الثانية",
   "KEY_TITLE_BUTTON" : "اللغة",
-  "KEY_TEX_BUTTON" : "اختار لغة التطبيق",
-  "KEY_CHANGE_LANG" : "تغير اللغة"
+  "KEY_TEX_BUTTON"   : "اختار لغة التطبيق",
+  "KEY_CHANGE_LANG"  : "تغير اللغة",
+  "NEXT_BUTTON"      : "التالي",
+  "START_BUTTON"     : "ابدا",
+  "SKIP_BUTTON"      : " تخطى",
+  "TITLE_ONE"        : "العنوان ١",
+  "TITLE_TWO"        : "العنوان ٢",
+  "TITLE_THREE"      : "العنوان ٣",
+  "DESCRIPTION_ONE"  : "سوف يقوم الرفيق الأول ورئيسه أيضًا بالراحة في عش الجزيرة الاستوائية حتى النهاية .",
+  "DESCRIPTION_TWO"  : "سوف يقوم الرفيق الأول ورئيسه أيضًا بالراحة في عش الجزيرة الاستوائية حتى النهاية .",
+  "DESCRIPTION_THREE": "سوف يقوم الرفيق الأول ورئيسه أيضًا بالراحة في عش الجزيرة الاستوائية حتى النهاية .",
+  "REGISTER_OPTION"  : "التسجيل",
+  "LOGIN_OPTION"     : "الذخول"
 }

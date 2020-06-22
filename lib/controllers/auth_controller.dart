@@ -18,8 +18,13 @@ class AuthController implements AuthBaseController{
   @override
   Future<int> register(Map<String, dynamic > data) async {
     var response = await authApi.register(data);
-    await this.saveID(response['user_id']);
-    return response['user_id'];
+    try{
+      await this.saveID(response['user_id']);
+      return response['user_id'];
+    }catch (ex){
+      throw Exception(ex.toString());
+    }
+
   }
 
   @override
