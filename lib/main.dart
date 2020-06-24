@@ -11,8 +11,6 @@ void main() async{
   int user_id = shPref.getInt('user_id');
   bool seen   = shPref.getBool("seen");
   String homeScreenRoute ;
-  print(user_id);
-  print(seen);
   if (user_id == null && (seen == null || ! seen)){
     homeScreenRoute = welcomeRoute;
   }else if( seen && user_id == null ){
