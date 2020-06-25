@@ -16,7 +16,7 @@ class ProductController implements Controller {
     List<Product> products = [];
     for (var item in data) {
       if (item['type'] == 'variable') {
-      // products.add(VariableProduct.fromJsonMap(item));
+       products.add(VariableProduct.fromJsonMap(item));
       } else {
         products.add(Product.fromJsonMap(item));
       }

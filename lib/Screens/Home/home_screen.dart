@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: Image(
                     fit: BoxFit.cover,
-                      image: NetworkImage( randomProducts[position].images[0].src  ),
+                      image: NetworkImage( randomProducts[position].images[0].src ),
                   ),
                 ),
             ],

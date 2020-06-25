@@ -27,6 +27,7 @@ class Product extends BaseProduct{
 
     // fetch List images ids from api
     this.images = [];
+   // throw Exception(map['images'] );
     if(map['images'] != null){
       for(var item in map['images']){
         images.add(Image.fromJsonMap(item));
