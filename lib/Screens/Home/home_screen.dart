@@ -128,10 +128,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    child: Image(
+                    child: randomProducts[position].images.length >  0 ? Image(
                       fit: BoxFit.cover,
-                      image: NetworkImage( randomProducts[position].images[0].src ),
-                    ),
+                      image: NetworkImage(
+                        randomProducts[position].images[0].src,
+                      ),
+                    ) : Image.asset('assets/images/placeholder0.png'),
                   ),
                   Align(
                     alignment: Alignment.topLeft,
@@ -226,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Image(
                   fit:product.images.length >0 ? BoxFit.cover : BoxFit.contain,
                   image:product.images.length > 0 ? NetworkImage(product.images[0].src,):
-                      ExactAssetImage('assets/images/placeholder.jpg'),
+                      ExactAssetImage('assets/images/placeholder0.png'),
                 ),
               ),
             ),
