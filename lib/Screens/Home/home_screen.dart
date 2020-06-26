@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:goshopwooapp/Screens/Utilities/appbar.dart';
 import 'package:goshopwooapp/Screens/Utilities/drawer.dart';
+import 'package:goshopwooapp/Screens/constants.dart';
 import 'package:goshopwooapp/api/products/products_api.dart';
 import 'package:goshopwooapp/controllers/product_controller.dart';
 import 'package:goshopwooapp/models/product.dart';
@@ -105,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView(
       children: <Widget>[
         _homeBanner(context, _randomProducts ),
+        ..._productsList(context, products),
       ],
     );
   }
@@ -140,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             data: randomProducts[position].name,
                           ),
                           Html(
-                            data: randomProducts[position].description.substring(0, (randomProducts[position].description.length * 0.2).floor()),
+                            data:'${ randomProducts[position].description.substring(0, (randomProducts[position].description.length * 0.2).floor())}... ',
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left:8.0),
@@ -210,4 +212,57 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+ List<Widget> _productsList(BuildContext context, List<Product> products) {
+    return products.map((product){
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: double.infinity,
+              child: Card(
+                child: Image(
+                  fit:product.images.length >0 ? BoxFit.cover : BoxFit.contain,
+                  image:product.images.length > 0 ? NetworkImage(product.images[0].src,):
+                      ExactAssetImage('assets/images/placeholder.jpg'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15,),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(product.name),
+                      Text('k.d ${product.price}'),
+                    ],
+                  ),
+                  FlatButton(
+                    color: SProductButton,
+                    child: Text('BUY NOW',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    onPressed: (){
+
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
+ }
 }
