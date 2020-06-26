@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
 import 'package:goshopwooapp/Screens/Utilities/appbar.dart';
 import 'package:goshopwooapp/Screens/Utilities/drawer.dart';
 import 'package:goshopwooapp/api/products/products_api.dart';
@@ -127,6 +129,40 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Image(
                       fit: BoxFit.cover,
                       image: NetworkImage( randomProducts[position].images[0].src ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Html(
+                            data: randomProducts[position].name,
+                          ),
+                          Html(
+                            data: randomProducts[position].description.substring(0, (randomProducts[position].description.length * 0.2).floor()),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left:8.0),
+                            child: Text('START FROM'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text('k.d ${randomProducts[position].price}'),
+                          ),
+                          FlatButton(
+                              onPressed: (){},
+                              child: Text('BUY NOW'),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                              ),
+                              color: Colors.white,
+                          ),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.5, left: 50),
                     ),
                   ),
                 ],
