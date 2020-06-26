@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ProductApi extends MainApi implements ApiInterface{
   @override
   Future<List<dynamic>> getAll({int page}) async {
-    PRODUCTS_URL = page != null ? PRODUCTS_URL + '?page=${page.toString()}' : PRODUCTS_URL;
+    PRODUCTS_URL = page != null ? PRODUCTS_URL + '?page=$page' : PRODUCTS_URL;
     http.Response response = await http.get(PRODUCTS_URL, headers: headers);
     switch( response.statusCode ){
         case 401:

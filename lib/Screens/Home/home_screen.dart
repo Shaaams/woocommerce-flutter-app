@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
 import 'package:goshopwooapp/Screens/Utilities/appbar.dart';
 import 'package:goshopwooapp/Screens/Utilities/drawer.dart';
 import 'package:goshopwooapp/Screens/constants.dart';
@@ -18,11 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ProductController _productController = ProductController(ProductApi());
   bool _isLoading = true;
   PageController _bannerController ;
+  Future<List<Product>> _futureProducts;
   ValueNotifier<int> _indexNotifier = ValueNotifier<int>(0);
 
   @override
   void initState() {
     super.initState();
+    _futureProducts = _productController.getAll();
    _bannerController = PageController(
      initialPage: 0,
    );
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _drawHomeScreen(BuildContext context) {
     return FutureBuilder(
-      future: _productController.getAll(),
+      future: _futureProducts,
       builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot){
         switch(snapshot.connectionState){
 
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return _loadingWidget(context);
             break;
           case ConnectionState.none:
-            return _errorWidget(context, msg: "General Error");
+            return _errorWidget(context, msg: "General Error None");
             break;
           case ConnectionState.done:
             if(snapshot.hasError){
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return _drawElements(context , snapshot.data);
             break;
           default:
-            return _errorWidget(context, msg: "General Error");
+            return _errorWidget(context, msg: "General Error Default");
             break;
         }
       },
