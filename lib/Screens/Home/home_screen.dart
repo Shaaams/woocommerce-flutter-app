@@ -1,11 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:goshopwooapp/Screens/Utilities/appbar.dart';
 import 'package:goshopwooapp/Screens/Utilities/drawer.dart';
 import 'package:goshopwooapp/api/products/products_api.dart';
 import 'package:goshopwooapp/controllers/product_controller.dart';
-import 'package:goshopwooapp/models/base_product.dart';
 import 'package:goshopwooapp/models/product.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,6 +14,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ProductController _productController = ProductController(ProductApi());
   bool _isLoading = true;
+  PageController _bannerController ;
+  ValueNotifier<int> _indexNotifier = ValueNotifier<int>(0);
+
+  @override
+  void initState() {
+    super.initState();
+   _bannerController = PageController(
+     initialPage: 0,
+   );
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -103,22 +111,67 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.35,
-      child: PageView.builder(
-        itemCount: randomProducts.length,
-        itemBuilder: (BuildContext context, int position){
-          return Stack(
-            children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image(
-                    fit: BoxFit.cover,
+      child: Stack(
+        children: <Widget>[
+          PageView.builder(
+            controller: _bannerController,
+            onPageChanged: (index){
+              _indexNotifier.value = index;
+            },
+            itemCount: randomProducts.length,
+            itemBuilder: (BuildContext context, int position){
+              return Stack(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image(
+                      fit: BoxFit.cover,
                       image: NetworkImage( randomProducts[position].images[0].src ),
+                    ),
                   ),
+                ],
+              );
+            },
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 15),
+                  child: _drawDots(context, randomProducts.length)
+              ),
+          ),
+        ],
+      ),
+    );
+ }
+
+  Widget _drawDots(BuildContext context, int count ) {
+    return Container(
+      width: 60,
+      height: 10,
+
+      child: ValueListenableBuilder(
+        valueListenable: _indexNotifier,
+        builder: (BuildContext context , int index, Widget child){
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int position){
+              return AnimatedContainer(
+                duration: Duration(milliseconds: 400),
+                margin: EdgeInsets.only(right: 15),
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: index == position ? Colors.white : Colors.grey.shade300,
                 ),
-            ],
+              );
+            },
+            itemCount: count,
           );
         },
       ),
     );
- }
+  }
 }
